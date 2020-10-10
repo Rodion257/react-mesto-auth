@@ -1,0 +1,25 @@
+@import url(./__logo/header__logo.css);
+@import url(./__email/header__email.css);
+@import url(./__link/header__link.css);
+@import url(./__link/_logged/header__link_logged_in.css);
+.header {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  width: 68.91%;
+  max-width: 882px;
+  height: 74px;
+  justify-self: center;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 18px;
+}
+
+@media screen and (max-width: 539px) {
+  .header {
+    width: 90%;
+    padding: 13px 0 14px 27px;
+    height: 56px;
+  }
+}

@@ -1,0 +1,4 @@
+.cards__like-button_active {
+    background-image: url(../../../../images/Like_black.svg);
+    transition: 0.2s ease-out;
+}

@@ -1,0 +1,84 @@
+.form {
+    display: flex;
+    justify-content: center;
+    width: 68.91%;
+    margin: 0 auto 0;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    width: 358px;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.form__header {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0 0 50px;
+    width: 100%;
+}
+
+.form__input {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: #000000;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    padding-bottom: 13px;
+    margin: 0 0 30px;
+    width: 100%;
+    max-width: 358px;
+}
+
+.form__input-email {}
+
+.form__input-password {
+    margin-bottom: 216px;
+}
+
+.form__button {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+    background-color: #FFFFFF;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    height: 50px;
+    width: 100%;
+    padding: 0;
+    max-width: 358px;
+}
+
+.form__text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.form__link {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    text-decoration: none;
+}

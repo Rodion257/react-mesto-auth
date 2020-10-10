@@ -1,0 +1,26 @@
+@import url(../../fonts/inter.css);
+@import url(./__item/cards__item.css);
+@import url(./__image/cards__image.css);
+@import url(./__like/cards__like.css);
+@import url(./__like-button/cards__like-button.css);
+@import url(./__like-button/_active/cards__like-button_active.css);
+@import url(./__like-counter/cards__like-counter.css);
+@import url(./__name/cards__name.css);
+@import url(./__name-caption/cards__name-caption.css);
+@import url(./__delete-button/cards__delete-button.css);
+.cards {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(282px, 282px));
+  grid-row-gap: 21px;
+  grid-column-gap: 18px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+@media screen and (max-width: 670px) {
+  .cards {
+    width: 88.12%;
+    margin-top: 36px;
+  }
+}
