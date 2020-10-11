@@ -30,12 +30,11 @@ function App() {
   const [registered, setRegistered] = React.useState(false);
   const history = useHistory();
 
-
-
   React.useEffect(() => {
-    api.getInitialCards()
+    Promise.all([api.getInitialCards(), api.getInfoUser()])
       .then((result) => {
-        setCards(result)
+        setCards(result[0]);
+        setCurrentUser(result[1]);
       })
       .catch((err) => {
         console.log(err);
@@ -67,16 +66,6 @@ function App() {
       })
 
   }
-
-  React.useEffect(() => {
-    api.getInfoUser()
-      .then((data) => {
-        setCurrentUser(data)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
@@ -194,6 +183,8 @@ function App() {
               history.push('/');
             }
           })
+      } else {
+        localStorage.removeItem('jwt');
       }
     };
 
@@ -213,7 +204,9 @@ function App() {
         <div className="page">
           <Switch>
 
-            <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
+            <ProtectedRoute exact path="/"
+              loggedIn={loggedIn}
+              component={Main}
               onCardClick={handleCardClick}
               onImagePopup={handleImagePopupclick}
               onEditProfile={handleEditProfileClick}
