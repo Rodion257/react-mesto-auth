@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/mesto-react/static/css/main.534736bd.chunk.css",
-    "main.js": "/mesto-react/static/js/main.428701b9.chunk.js",
-    "main.js.map": "/mesto-react/static/js/main.428701b9.chunk.js.map",
-    "runtime-main.js": "/mesto-react/static/js/runtime-main.36fb0e45.js",
-    "runtime-main.js.map": "/mesto-react/static/js/runtime-main.36fb0e45.js.map",
-    "static/js/2.7478428c.chunk.js": "/mesto-react/static/js/2.7478428c.chunk.js",
-    "static/js/2.7478428c.chunk.js.map": "/mesto-react/static/js/2.7478428c.chunk.js.map",
-    "index.html": "/mesto-react/index.html",
-    "precache-manifest.aa462fa5e08d7ffb0f4a0709c05b99e2.js": "/mesto-react/precache-manifest.aa462fa5e08d7ffb0f4a0709c05b99e2.js",
-    "service-worker.js": "/mesto-react/service-worker.js",
-    "static/css/main.534736bd.chunk.css.map": "/mesto-react/static/css/main.534736bd.chunk.css.map",
-    "static/js/2.7478428c.chunk.js.LICENSE.txt": "/mesto-react/static/js/2.7478428c.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/mesto-react/static/media/Vector_pencil.58afbe73.svg",
-    "static/media/logo.svg": "/mesto-react/static/media/logo.855a8c98.svg"
+    "main.css": "/static/css/main.c6b71590.chunk.css",
+    "main.js": "/static/js/main.f9c0b6ec.chunk.js",
+    "main.js.map": "/static/js/main.f9c0b6ec.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e8402bce.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e8402bce.js.map",
+    "static/js/2.beeed446.chunk.js": "/static/js/2.beeed446.chunk.js",
+    "static/js/2.beeed446.chunk.js.map": "/static/js/2.beeed446.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.5d3119e9470f428948b789b82315af38.js": "/precache-manifest.5d3119e9470f428948b789b82315af38.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.c6b71590.chunk.css.map": "/static/css/main.c6b71590.chunk.css.map",
+    "static/js/2.beeed446.chunk.js.LICENSE.txt": "/static/js/2.beeed446.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Vector_pencil.58afbe73.svg",
+    "static/media/logo.svg": "/static/media/logo.855a8c98.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.36fb0e45.js",
-    "static/js/2.7478428c.chunk.js",
-    "static/css/main.534736bd.chunk.css",
-    "static/js/main.428701b9.chunk.js"
+    "static/js/runtime-main.e8402bce.js",
+    "static/js/2.beeed446.chunk.js",
+    "static/css/main.c6b71590.chunk.css",
+    "static/js/main.f9c0b6ec.chunk.js"
   ]
 }
