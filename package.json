@@ -1,5 +1,4 @@
 {
-  "homepage": "https://rodion257.github.io/mesto-react/",
   "name": "mesto-react",
   "version": "0.1.0",
   "description": "Сайт с карточками красивых мест",
@@ -17,7 +16,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && scp -r ./build/* stepanov-rv@84.201.173.80:/home/stepanov-rv/news-frontend",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

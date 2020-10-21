@@ -22,29 +22,28 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
-  const [currentUser, setCurrentUser] = React.useState('');
+  const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [userData, setUserData] = React.useState({});
   const [registered, setRegistered] = React.useState(false);
   const history = useHistory();
 
-  React.useEffect(() => {
-    Promise.all([api.getInitialCards(), api.getInfoUser()])
-      .then((result) => {
-        setCards(result[0]);
-        setCurrentUser(result[1]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   console.log('hi');
+  //   Promise.all([api.getInitialCards(), api.getInfoUser()])
+  //     .then((result) => {
+  //       setCards(result[0]);
+  //       setCurrentUser(result[1].data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-
+    const isLiked = card.likes.some(i => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -168,19 +167,25 @@ function App() {
   function handleLogin() {
     setLoggedIn(true);
   }
+
   React.useEffect(() => {
     const tokenCheck = () => {
       const jwt = localStorage.getItem('jwt');
+      console.log(jwt);
       if (jwt) {
         auth.getContent(jwt)
           .then((res) => {
             if (res.data) {
               setLoggedIn(true);
-              setUserData({
-                id: res.data._id,
-                email: res.data.email,
-              });
+              setCurrentUser(res.data);
               history.push('/');
+              auth.getInitialCards(jwt)
+                .then((result) => {
+                  setCards(result);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             }
           })
       } else {
@@ -216,7 +221,7 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
               signOut={signOut}
-              userData={userData} />
+              userData={currentUser} />
 
             <Route path="/sign-up">
               <Register onRegister={onRegister} onUnregister={onUnregister} isOpen={handleRegisterPopup} onClose={closeAllPopups} />

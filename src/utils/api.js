@@ -66,6 +66,7 @@ class Api {
   }
 
   changeAvatar(data) {
+    console.log(data.avatar);
     return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
@@ -78,9 +79,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-13',
+  baseUrl: 'https://api.rodion.students.nomoreparties.xyz',
   headers: {
-    authorization: 'dc1735db-20ec-4583-a516-d92fba380f3a',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
 });

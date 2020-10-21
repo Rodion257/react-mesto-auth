@@ -1,5 +1,4 @@
-
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.rodion.students.nomoreparties.xyz';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -38,6 +37,18 @@ export const authorize = (email, password) => {
 
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+    .then(res => res.json())
+    .then(data => data)
+}
+
+export const getInitialCards = (token) => {
+  return fetch(`${BASE_URL}/cards`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
