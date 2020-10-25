@@ -11,8 +11,8 @@ import AddPlacePopup from './AddPlacePopup';
 import Register from './Register';
 import Login from './Login';
 import InfoTooltip from './InfoTooltip';
+import LoginPopup from './LoginPopup';
 import ProtectedRoute from './ProtectedRoute';
-import * as auth from '../utils/auth';
 
 function App() {
 
@@ -21,12 +21,14 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
+  const [isLoginTooltipPopupOpen, setIsLoginTooltipPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [registered, setRegistered] = React.useState(false);
+  const [message, setMessage] = React.useState();
   const history = useHistory();
 
   // React.useEffect(() => {
@@ -57,13 +59,19 @@ function App() {
       });
   }
 
+  function handleMessage(message) {
+    setMessage(message);
+  }
+
   function handleCardDelete(card) {
     api.removeCard(card)
       .then(() => {
         const arrWithoutCard = cards.filter((i) => i !== card);
         setCards(arrWithoutCard);
       })
-
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function handleEditProfileClick() {
@@ -90,12 +98,17 @@ function App() {
     setIsInfoTooltipPopupOpen(!isInfoTooltipPopupOpen);
   }
 
+  function handleLoginPopup() {
+    setIsLoginTooltipPopupOpen(!isLoginTooltipPopupOpen);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsImagePopupOpen(false);
     setIsInfoTooltipPopupOpen(false);
+    setIsLoginTooltipPopupOpen(false);
   }
 
   React.useEffect(() => {
@@ -164,22 +177,26 @@ function App() {
     setRegistered(false);
   }
 
-  function handleLogin() {
+  function onLogin() {
     setLoggedIn(true);
+  }
+
+  function notLogin() {
+    setLoggedIn(false)
   }
 
   React.useEffect(() => {
     const tokenCheck = () => {
+      api.handleToken();
       const jwt = localStorage.getItem('jwt');
-      console.log(jwt);
       if (jwt) {
-        auth.getContent(jwt)
+        api.getInfoUser()
           .then((res) => {
             if (res.data) {
               setLoggedIn(true);
               setCurrentUser(res.data);
               history.push('/');
-              auth.getInitialCards(jwt)
+              api.getInitialCards()
                 .then((result) => {
                   setCards(result);
                 })
@@ -224,11 +241,11 @@ function App() {
               userData={currentUser} />
 
             <Route path="/sign-up">
-              <Register onRegister={onRegister} onUnregister={onUnregister} isOpen={handleRegisterPopup} onClose={closeAllPopups} />
+              <Register handleMessage={handleMessage} onRegister={onRegister} onUnregister={onUnregister} isOpen={handleRegisterPopup} onClose={closeAllPopups} />
             </Route>
 
             <Route path="/sign-in">
-              <Login onLogin={handleLogin} onClose={closeAllPopups} />
+              <Login handleMessage={handleMessage} isOpen={handleLoginPopup} onLogin={onLogin} notLogin={notLogin} onClose={closeAllPopups} />
             </Route>
 
             <Route path="/">
@@ -250,7 +267,8 @@ function App() {
           onClose={closeAllPopups} />
 
         <EditAvatarPopup isLoading={isLoading} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-        <InfoTooltip onRegister={registered} isOpen={isInfoTooltipPopupOpen} onClose={closeAllPopups} />
+        <InfoTooltip onRegister={registered} isOpen={isInfoTooltipPopupOpen} onClose={closeAllPopups} message={message} />
+        <LoginPopup onLogin={loggedIn} isOpen={isLoginTooltipPopupOpen} onClose={closeAllPopups} message={message} />
 
       </div >
     </CurrentUserContext.Provider>

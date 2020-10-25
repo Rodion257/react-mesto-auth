@@ -65,6 +65,12 @@
     max-width: 358px;
 }
 
+.form__button_disabled {
+    background-color: #000000;
+    color: #262626;
+    border: 1px solid #262626;
+}
+
 .form__text {
     font-style: normal;
     font-weight: normal;

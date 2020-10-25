@@ -1,22 +1,36 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from './Header';
+import classnames from 'classnames';
 import * as auth from '../utils/auth';
 
 function Register(props) {
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [message, setMessage] = React.useState('');
+  const [emailLength, setEmailLength] = React.useState(false);
+  const [passLength, setPassLength] = React.useState(false);
 
   const history = useHistory();
+  const registerButtonClassName = classnames('form__button', { 'form__button_disabled': (!passLength || !emailLength) });
+  const disabledButton = classnames({ disabled: (!passLength || !emailLength) });
 
   function handleChangeEmail(e) {
     setEmail(e.target.value)
+    if (e.target.value.length > 3) {
+      setEmailLength(true)
+    } else {
+      setEmailLength(false);
+    };
   }
 
   function handleChangePassword(e) {
-    setPassword(e.target.value)
+    setPassword(e.target.value);
+    if (e.target.value.length >= 8) {
+      setPassLength(true)
+    } else {
+      setPassLength(false);
+    };
   }
 
   function resetForm() {
@@ -35,7 +49,7 @@ function Register(props) {
           history.push('/sign-in');
         }
         else {
-          setMessage(res.error || res.message)
+          props.handleMessage(res.error || res.message);
           props.onUnregister();
           props.isOpen();
         }
@@ -50,8 +64,7 @@ function Register(props) {
             <h1 className="form__header">Регистрация</h1>
             <input className="form__input form__input-email" type="email" name="email" onChange={handleChangeEmail} autoComplete="off" placeholder="Email" required></input>
             <input className="form__input form__input-password" type="password" name="password" onChange={handleChangePassword} autoComplete="off" placeholder="Пароль" required></input>
-            <p className="form__text">{message}</p>
-            <button type="submit" className="form__button">Зарегистрироваться</button>
+            <button type="submit" className={registerButtonClassName} disabled={disabledButton}>Зарегистрироваться</button>
             <p className="form__text">Уже зарегистрированы? <a className="form__link" href="/sign-in">Войти</a></p>
           </form>
         </section>

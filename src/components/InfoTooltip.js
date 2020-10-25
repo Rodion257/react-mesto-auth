@@ -14,7 +14,7 @@ function InfoTooltip(props) {
           src={props.onRegister ? loginImage : declineImage}
           alt={props.onRegister ? 'Correct' : 'Incorrect'} />
         <figcaption className="popup__image-caption">
-          {props.onRegister ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
+          {props.onRegister ? 'Вы успешно зарегистрировались!' : props.message}
         </figcaption>
       </figure>
     </section>
